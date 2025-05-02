@@ -4,19 +4,14 @@ using UnityEngine;
 
 public struct HexPosition
 {
-    public int Q;  //column
-    public int R; //row
+    public int x;  //column
+    public int z; //row
 
-    public HexPosition(int column, int row)
+    public HexPosition(int x, int z)
     {
-        this.Q = column;
-        this.R = row;
+        this.x = x;
+        this.z = z;
     }
 
-    public Vector3 ToWorld(float hexSize)
-    {
-        float x = hexSize * (Mathf.Sqrt(3f) * Q + Mathf.Sqrt(3f)/2f * R);
-        float z = hexSize * (3f/2f * R);
-        return new Vector3(x, 0, z);
-    }
+    public override string ToString() => $"Hex({x},{z})";
 }

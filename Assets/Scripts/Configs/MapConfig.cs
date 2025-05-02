@@ -15,4 +15,5 @@ public struct MapData
     public int width;
     public int height;
     public float hexSize;
+    public Transform hexTilePrefab;
 }
