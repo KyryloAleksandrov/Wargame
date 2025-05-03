@@ -75,6 +75,35 @@ public class HexGridSystem<TGridObject> where TGridObject : class
         return new HexPosition(closestGridPosition.x, closestGridPosition.z);
     }
 
+    public TGridObject GetGridObject(HexPosition hexPosition)
+    {
+        return gridObjects[hexPosition.x, hexPosition.z];
+    }
+
+    public void CreateDebugObjects(Transform debugPrefab)
+    {
+        for (int x = 0; x < width; x++){
+            for (int z = 0; z< height; z++){
+                HexPosition hexPosition = new HexPosition(x, z);
+
+                Transform debugTransform = GameObject.Instantiate(debugPrefab, GetWorldPosition(hexPosition), Quaternion.identity);
+
+                GridCoordinates gridCoordinates = debugTransform.GetComponent<GridCoordinates>();
+
+                gridCoordinates.SetGridObject(GetGridObject(hexPosition));
+            }
+        }
+    }
+
+    public bool IsValidGridPosition(HexPosition hexPosition)
+    {
+        return 
+        hexPosition.x >= 0 && 
+        hexPosition.z >= 0 && 
+        hexPosition.x < width && 
+        hexPosition.z < height;
+    }
+
     public TGridObject[,] GetGridObjectArray()
     {
         return gridObjects;

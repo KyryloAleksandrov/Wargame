@@ -34,7 +34,7 @@ public class MoveAction : BaseAction
             return;
         }
 
-        Vector3 targetPosition = destination;
+        Vector3 targetPosition = destination + verticalOffset;
         Vector3 moveDirection = (targetPosition - transform.position).normalized; 
 
         transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
@@ -46,6 +46,8 @@ public class MoveAction : BaseAction
         else
         {
             Debug.Log("Reached destination at: " + ProjectContext.Instance.MapService.hexGridSystem.GetHexGridPosition(targetPosition));
+            unit.PopulateOrientations(ProjectContext.Instance.MapService.hexGridSystem.GetHexGridPosition(targetPosition));
+            unit.showOrientations();
             isActive = false;
         }
         

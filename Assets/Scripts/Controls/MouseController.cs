@@ -26,7 +26,8 @@ public class MouseController : MonoBehaviour
             }
             else
             {
-                Debug.Log(ProjectContext.Instance.MapService.HandleTileSelection(hexGridMask).ToString());
+                //Debug.Log(ProjectContext.Instance.MapService.HandleTileSelection(hexGridMask).ToString());
+                //ProjectContext.Instance.MapService.GetNeighbors(ProjectContext.Instance.MapService.HandleTileSelection(hexGridMask));
                 return;
             }
         }

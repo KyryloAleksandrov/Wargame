@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,8 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     private HexPosition hexPosition { get; set; }
-    private HexOrientation hexOrientation {get; set;}
+    private HexOrientation currentOrientation {get; set;}
+    private Dictionary<HexOrientation, HexPosition> orientationList;
 
     public Unit (HexPosition hexPosition)
     {
@@ -14,7 +16,7 @@ public class Unit : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     public void SetPosition(HexPosition hexPosition)
@@ -27,6 +29,25 @@ public class Unit : MonoBehaviour
     }
     public void SetHexOrientation(HexOrientation hexOrientation)
     {
-        this.hexOrientation = hexOrientation;
+        this.currentOrientation = hexOrientation;
+    }
+
+    public void PopulateOrientations(HexPosition hexPosition)
+    {
+        orientationList = new Dictionary<HexOrientation, HexPosition>();
+        List<HexPosition> neighbors = ProjectContext.Instance.MapService.GetNeighbors(hexPosition);
+        foreach (HexOrientation orientation in Enum.GetValues(typeof(HexOrientation)))
+        {
+            int index = (int)orientation;
+            orientationList.Add(orientation, neighbors[index]);
+        }
+    }
+
+    public void showOrientations()
+    {
+        foreach(KeyValuePair<HexOrientation, HexPosition> kvp in orientationList)
+        {
+            Debug.Log($"Orientation = {kvp.Key}, Position = {kvp.Value}");
+        }
     }
 }

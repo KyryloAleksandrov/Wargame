@@ -18,3 +18,5 @@ MonoBehaviour:
     hexSize: 1
     hexTilePrefab: {fileID: 2173757191867678105, guid: 5828466d5511025469d4752947853c11,
       type: 3}
+    gridCoordinatesPrefab: {fileID: 2355661092555330200, guid: 11f13c8a5dff1e641b313ba940322632,
+      type: 3}

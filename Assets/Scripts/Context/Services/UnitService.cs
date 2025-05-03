@@ -28,6 +28,7 @@ public class UnitService : IUnitService
         Transform newUnitTransform = GameObject.Instantiate(unitTransform, ProjectContext.Instance.MapService.hexGridSystem.GetWorldPosition(hexPosition) + verticalOffset, Quaternion.identity);
         Unit newUnit = newUnitTransform.GetComponent<Unit>();
         newUnit.SetPosition(hexPosition);
+        newUnit.PopulateOrientations(hexPosition);
         currentUnits.Add(newUnit);
     }
 
@@ -40,6 +41,7 @@ public class UnitService : IUnitService
                 if(unit != null)
                 {
                     SelectUnit(unit);
+                    selectedUnit.showOrientations();
                     return;
                 }
             }

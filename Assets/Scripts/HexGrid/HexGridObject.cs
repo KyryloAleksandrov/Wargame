@@ -16,5 +16,8 @@ public class HexGridObject
         return hexPosition;
     }
 
-    public override string ToString() => $"HexObject @ {hexPosition}";
+    public override string ToString()
+    {
+        return hexPosition.ToString();
+    }
 }
