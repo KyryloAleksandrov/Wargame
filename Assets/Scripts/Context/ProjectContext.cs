@@ -17,11 +17,13 @@ public class ProjectContext
 
     public IConfigService ConfigService {get; private set;}
     public IMapService MapService {get; private set;}
+    public IUnitService UnitService {get; private set;}
 
-    public void Initialize(MapConfig mapConfig)
+    public void Initialize(MapConfig mapConfig, UnitConfig unitConfig)
     {
-        ConfigService = new ConfigService(mapConfig);
+        ConfigService = new ConfigService(mapConfig, unitConfig);
         MapService = new MapService(ConfigService);
+        UnitService = new UnitService(ConfigService);
         Debug.Log("Loaded successfully");
     }
 }

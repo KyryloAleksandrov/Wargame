@@ -7,6 +7,7 @@ public interface IMapService
 {
     HexGridSystem<HexGridObject> hexGridSystem {get; set;}
     void InitializeGrid();
+    HexPosition HandleTileSelection(LayerMask layerMask);
 }
 public class MapService : IMapService
 {
@@ -37,5 +38,14 @@ public class MapService : IMapService
                 GameObject.Instantiate(hexTilePrefab, hexGridSystem.GetWorldPosition(hexPosition), Quaternion.identity);
             }
         }
+    }
+
+    public HexPosition HandleTileSelection(LayerMask layerMask)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, layerMask);
+        HexPosition currentPosition = hexGridSystem.GetHexGridPosition(raycastHit.point);
+        //Debug.Log(currentPosition.ToString());
+        return currentPosition;
     }
 }

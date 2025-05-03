@@ -456,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MapConfig: {fileID: 11400000, guid: af02a273f38430c4bb7d8b29b4368dd1, type: 2}
+  UnitConfig: {fileID: 11400000, guid: 26d2ad2dff396f146b42efe0026ccb7a, type: 2}
 --- !u!4 &1663352659
 Transform:
   m_ObjectHideFlags: 0
